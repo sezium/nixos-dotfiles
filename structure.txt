@@ -1,0 +1,146 @@
+.
+├── dump.txt
+├── flake.lock
+├── flake.nix
+├── .gitignore
+├── home-manager
+│   ├── home.nix
+│   ├── home-packages.nix
+│   └── modules
+│       ├── cli
+│       │   ├── bat.nix
+│       │   ├── default.nix
+│       │   ├── eza.nix
+│       │   ├── fastfetch
+│       │   │   ├── config.jsonc
+│       │   │   └── default.nix
+│       │   ├── git.nix
+│       │   ├── kitty.nix
+│       │   ├── oh-my-posh.nix
+│       │   ├── tmux.nix
+│       │   ├── vim
+│       │   │   └── default.nix
+│       │   ├── yazi.nix
+│       │   ├── zoxide.nix
+│       │   └── zsh.nix
+│       ├── de
+│       │   ├── default.nix
+│       │   ├── hyprland
+│       │   │   ├── binds.nix
+│       │   │   ├── default.nix
+│       │   │   └── main.nix
+│       │   ├── hyprlock
+│       │   │   └── default.nix
+│       │   ├── waybar
+│       │   │   ├── config.json
+│       │   │   ├── default.nix
+│       │   │   └── style.css
+│       │   ├── wofi
+│       │   │   └── default.nix
+│       │   └── wofi-power-menu
+│       │       ├── config.toml
+│       │       └── default.nix
+│       ├── default.nix
+│       ├── media
+│       │   ├── default.nix
+│       │   ├── mpv.nix
+│       │   ├── qimgv.nix
+│       │   └── zathura.nix
+│       ├── scripts
+│       │   ├── animation.sh
+│       │   ├── songdetail.sh
+│       │   ├── vif.sh
+│       │   ├── vig.sh
+│       │   ├── waybarCava.sh
+│       │   ├── waybar.sh
+│       │   └── zvif.sh
+│       ├── services
+│       │   ├── default.nix
+│       │   ├── mprs.nix
+│       │   └── stylix.nix
+│       ├── session
+│       │   ├── default.nix
+│       │   ├── directories.nix
+│       │   ├── nixpkgs.nix
+│       │   └── session_var.nix
+│       └── wallpapers
+│           ├── flower.png
+│           ├── gruvbox_tux.png
+│           ├── icon.png
+│           ├── mountains.jpg
+│           └── nix-gruv.jpg
+├── hosts
+│   ├── desktop
+│   │   ├── boot
+│   │   │   ├── boot.nix
+│   │   │   └── default.nix
+│   │   ├── configuration.nix
+│   │   ├── drivers
+│   │   │   ├── default.nix
+│   │   │   └── nvidia.nix
+│   │   ├── hardware-configuration.nix
+│   │   ├── kernel
+│   │   │   ├── default.nix
+│   │   │   └── kernel.nix
+│   │   ├── pakages
+│   │   │   ├── default.nix
+│   │   │   └── local-packages.nix
+│   │   └── services
+│   │       ├── avahi.nix
+│   │       ├── default.nix
+│   │       ├── flatpak.nix
+│   │       ├── keyring.nix
+│   │       ├── net.nix
+│   │       ├── nixpkgs.nix
+│   │       ├── portal.nix
+│   │       └── printer.nix
+│   └── laptop
+│       ├── boot
+│       │   ├── boot.nix
+│       │   └── default.nix
+│       ├── configuration.nix
+│       ├── drivers
+│       │   ├── default.nix
+│       │   └── intel-drivers.nix
+│       ├── hardware-configuration.nix
+│       ├── kernel
+│       │   ├── default.nix
+│       │   └── kernel.nix
+│       ├── packages
+│       │   ├── default.nix
+│       │   └── local-packages.nix
+│       └── services
+│           ├── default.nix
+│           ├── keyring.nix
+│           └── nixpkgs.nix
+├── LICENSE
+├── modules
+│   ├── default.nix
+│   ├── localization
+│   │   ├── default.nix
+│   │   └── timezone.nix
+│   ├── security
+│   │   ├── default.nix
+│   │   └── ssh.nix
+│   ├── services
+│   │   ├── audio.nix
+│   │   ├── bash.nix
+│   │   ├── bluetooth.nix
+│   │   ├── default.nix
+│   │   ├── gvfs.nix
+│   │   ├── home-manager.nix
+│   │   ├── ld.nix
+│   │   ├── mime.nix
+│   │   ├── net.nix
+│   │   ├── nh.nix
+│   │   ├── nix_experimental.nix
+│   │   ├── session_var.nix
+│   │   ├── stylix.nix
+│   │   └── zsh.nix
+│   └── user
+│       ├── default.nix
+│       └── user.nix
+├── README.md
+└── structure.txt
+
+35 directories, 109 files

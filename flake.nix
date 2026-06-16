@@ -38,6 +38,7 @@
       system = system;
       specialArgs = {
         inherit inputs stateVersion hostname user;
+        # base_dir = ./; # the actual config directory #TODO fix this
       };
 
       modules = [

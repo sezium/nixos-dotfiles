@@ -1,0 +1,19 @@
+[menu.lock-screen]
+title = "Lock Screen"
+cmd = "hyprlock"
+
+[menu.logout]
+title = "Logout"
+cmd = "hyprctl dispatch exit"
+
+[menu.suspend]
+title = "Suspend"
+cmd = "systemctl suspend"
+
+[menu.reboot]
+title = "Reboot"
+cmd = "systemctl reboot"
+
+[menu.shutdown]
+title = "Shutdown"
+cmd = "systemctl poweroff"

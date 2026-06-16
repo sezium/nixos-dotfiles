@@ -1,98 +1,87 @@
 { pkgs, ... }: {
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowBroken = true;
-
   home.packages = with pkgs; [
 
-    telegram-desktop
-
-
-# utils
-    gcc
-    cmake
-    bear
-    gnumake
-# needed in nvim
-
-    wiremix # audio controller
-
-    # flutter dev
-    code-cursor-fhs
-    chromium
-    openjdk21
-
-    discord
-    obs-studio
-
-
-    playerctl # needed tho show lock screen current song and other stuff
-    wofi-power-menu
-
-    xournalpp
-    gnome-calculator
-
-    xfce.xfconf # needed to customize thunar
-    gvfs # Mount, trash, and other functionalities
-    xfce.thunar-volman
-    xfce.tumbler # Thumbnail support for images
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-dropbox-plugin
-
-    #send files between devices
-    localsend
-
-    # gtk4
-
-
-    # browser
-    brave
-
-    libreoffice
-
-    # games
-    prismlauncher
-
-    # minecraft
-
-    # CLI utils
+    # System / terminal utilities
     fastfetch
-    fd # finder
-    fzf
     btop
-    gh
-    git
-    lazygit
-    github-desktop
-    kitty
-    man-pages
-    man-pages-posix
-    mpv
-    oh-my-posh # set terminal theme
-    ripgrep
     tree
     unzip
-    wget
-    zathura
     zip
-    zoxide # better cd
-    bluetuith
+    wget
     killall
-    cava
     perf
 
+    # Search / navigation / CLI tools
+    fd
+    fzf
+    ripgrep
+    zoxide
 
+    # Development tools
+    git
+    gh
+    lazygit
+    gcc
+    cmake
+    gnumake
+    bear
+    neovim
+
+    # Terminal / shell customization
+    kitty
+    oh-my-posh
+
+    # Audio / sound
+    wiremix
+    pavucontrol
+    playerctl
+
+    # Communication / social
+    discord
+    telegram-desktop
+
+    # Image / drawing / notes
+    aseprite
+    xournalpp
+
+    # File manager / XFCE tools
+    xfce.xfconf
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
+    xfce.thunar-dropbox-plugin
+    xfce.tumbler
+    gvfs
+
+    # Browser / web
+    brave
+
+    # Documents / office
+    libreoffice
+    gnome-calculator
+    zathura
+
+    # Gaming
+    prismlauncher
+
+    # Media (video / image / audio)
+    mpv
+    qimgv
+
+    # Wayland / Hyprland utilities
     hyprpaper
-    brightnessctl
-
+    waybar
     wl-clipboard
     wf-recorder
+    brightnessctl
 
-    # screenshot
-    grim
-    slurp
-    waybar
+    # File sharing / network
+    localsend
+
+    # Desktop / workflow apps
+    github-desktop
+    wofi-power-menu
 
   ];
 
