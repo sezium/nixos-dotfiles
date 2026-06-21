@@ -1,5 +1,6 @@
 {
-    wayland.windowManager.hyprland.settings = {
+    wayland.windowManager.hyprland = {
+    settings = {
         bind = [
                 "$mainMod, D, exec, $menu"
                 "$mainMod, ESCAPE, exit"
@@ -76,6 +77,7 @@
                 ", XF86AudioPlay,  exec, playerctl play-pause"
                 ", XF86AudioPrev,  exec, playerctl previous"
         ];
+    };
     };
 
 
