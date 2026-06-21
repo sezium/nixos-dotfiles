@@ -4,4 +4,6 @@
     enable = true;
     # extraConfig = builtins.readFile ./sezium_hyprland.conf;
   };
+
+  xdg.configFile."hypr/hyprland.lua".source = ./hypr.lua;
 }

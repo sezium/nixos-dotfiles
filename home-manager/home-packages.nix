@@ -46,12 +46,12 @@
     xournalpp
 
     # File manager / XFCE tools
-    xfce.xfconf
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
-    xfce.thunar-dropbox-plugin
-    xfce.tumbler
+    xfconf
+    thunar
+    thunar-volman
+    thunar-archive-plugin
+    thunar-dropbox-plugin
+    tumbler
     gvfs
 
     # Browser / web
