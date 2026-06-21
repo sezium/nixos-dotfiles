@@ -7,6 +7,7 @@
     ./drivers
     ./services
     ./packages
+    ../../modules
   ];
 
   networking.hostName = hostname;

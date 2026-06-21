@@ -3,20 +3,20 @@
 
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
+      url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -25,13 +25,13 @@
   outputs = { nixpkgs, home-manager, nixvim, stylix, ... }@inputs: 
   let
     system = "x86_64-linux";
-    homeStateVersion = "25.11";
+    homeStateVersion = "26.05";
 
     user = "sezium";
 
     hosts = [
-      { hostname = "laptop";   stateVersion = "25.11"; }
-      { hostname = "desktop";  stateVersion = "25.11"; }
+      { hostname = "laptop";   stateVersion = "26.05"; }
+      { hostname = "desktop";  stateVersion = "26.05"; }
     ];
 
     makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
