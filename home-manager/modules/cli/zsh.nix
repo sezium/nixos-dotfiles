@@ -1,5 +1,8 @@
-{pkgs, ... }:
-{  
+{ config, pkgs, ... }:
+let
+  paths = config.myPaths;
+in
+{
     home.sessionPath = [
         "$HOME/develop/flutter/bin"
     ];
@@ -19,9 +22,9 @@
         shellAliases = {
 
             yz = "yazi";
-            vif = "~/scripts/vif.sh";
-            zvif = "~/scripts/zvif.sh";
-            vig = "~/scripts/vig.sh";
+            vif = "${paths.scripts}/vif.sh";
+            zvif = "${paths.scripts}/zvif.sh";
+            vig = "${paths.scripts}/vig.sh";
 
             se = "sudoedit";
 

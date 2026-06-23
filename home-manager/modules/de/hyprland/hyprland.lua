@@ -11,24 +11,18 @@ hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
 
--- Variabili specifiche NVIDIA (rimuovi se non hai una GPU NVIDIA)
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-
-hl.env("GDK_BACKEND", "wayland,x11,*")
-hl.env("SDL_VIDEODRIVER", "wayland")
-hl.env("CLUTTER_BACKEND", "wayland")
+-- Variabili NVIDIA: presenti solo se questa macchina e' un desktop
+-- con GPU NVIDIA (centralizzato in home-manager via myHyprland.nvidiaDesktop,
+-- a sua volta pilotato dal modulo di sistema). Su laptop/non-NVIDIA
+-- questo blocco resta vuoto.
+@nvidiaEnvBlock@
 
 -------------
 ---- MONITOR ----
 -------------
--- Modifica secondo i tuoi monitor reali (questi sono quelli dell'autore originale)
--- Vedi https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({ output = "eDP-1",    mode = "preferred", position = "auto", scale = 1.0 })
 hl.monitor({ output = "HDMI-A-2", mode = "preferred", position = "auto", scale = 2.0 })
 
--- Necessario per far funzionare correttamente gli screenshot
 hl.layer_rule({ match = { namespace = "selection" }, no_anim = true })
 
 ---------------
@@ -41,6 +35,12 @@ local menu        = "wofi --show drun"
 local powerMenu   = "wofi-power-menu"
 local lockScreen  = "hyprlock"
 local browser     = "brave"
+
+-- Path centralizzati, iniettati da home-manager (config.myPaths.*)
+-- Non vanno mockati qui dentro: se cambiano, cambiano in
+-- home-manager/modules/session/directories.nix.
+local scriptsDir      = "@scriptsDir@"
+local screenshotsDir  = "@screenshotsDir@"
 
 ---------------
 ---- AUTOSTART ----
@@ -122,15 +122,12 @@ hl.config({
     },
 })
 
--- Dispositivi specifici (mouse Razer dell'autore originale - rimuovi/adatta)
 hl.device({ name = "razer-razer-deathadder-essential",   sensitivity = -0.65 })
 hl.device({ name = "razer-razer-deathadder-essential-1", sensitivity = -0.65 })
 
 ------------------
 ---- GESTURES ----
 ------------------
--- workspace_swipe / workspace_swipe_fingers sono stati sostituiti dal nuovo
--- sistema gestures. Vedi https://wiki.hypr.land/Configuring/Variables/#gestures
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
@@ -141,9 +138,6 @@ hl.gesture({
 ----------------
 ---- LAYOUT ----
 ----------------
--- NOTA: l'opzione dwindle.pseudotile e' stata RIMOSSA in Hyprland 0.55
--- ("removed due to a lack of functionality"). Il dispatcher hl.dsp.window.pseudo()
--- (bind mainMod+P) resta comunque valido e disponibile.
 hl.config({
     dwindle = {
         preserve_split = true,
@@ -182,21 +176,10 @@ hl.window_rule({
 ---- KEYBINDS ----
 --------------------
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
--- NOTA CRITICA: hl.dsp.exit() NON ESISTE nell'API Lua (era solo "exit" in hyprlang).
--- Chiamarlo genera l'errore "hl.dispatch: expected a dispatcher" in fase di caricamento,
--- il che puo' interrompere la registrazione di TUTTI i bind scritti dopo questo punto
--- nello stesso file -- probabile causa di "SUPER non va" per i tasti successivi a D.
--- La wiki raccomanda "uwsm stop" (se usi uwsm) o "loginctl terminate-user ''" altrimenti,
--- per non interferire con la sequenza di shutdown ordinata.
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + O", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
--- NOTA: hl.dsp.window.kill_active() non esiste. Il dispatcher corretto e' hl.dsp.window.kill(),
--- ma se chiamato SENZA argomenti chiude TUTTE le istanze della classe della finestra attiva
--- (comportamento diverso dal vecchio killactive - vedi issue #14415, chiusa come "not planned").
--- Per ottenere l'equivalente esatto del vecchio killactive (solo la finestra attiva)
--- bisogna passare esplicitamente la finestra attiva tramite una funzione lua:
 hl.bind(mainMod .. " + Q", function()
     hl.dispatch(hl.dsp.window.kill(hl.get_active_window()))
 end)
@@ -206,49 +189,47 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd(powerMenu))
 hl.bind(mainMod .. " + 0", hl.dsp.exec_cmd(lockScreen))
 
--- Movimento focus (layout particolare: L=sinistra, H=destra, K=su, J=giu')
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "l" }))
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "r" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "u" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "d" }))
 
--- Workspace 1-7
 local workspaceKeys = { "Z", "X", "C", "V", "B", "N", "M" }
 for i, key in ipairs(workspaceKeys) do
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- Spostamento finestre
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 
--- Resize finestra attiva
 hl.bind(mainMod .. " + ALT + l", hl.dsp.window.resize({ x = 40,  y = 0,   relative = true }))
 hl.bind(mainMod .. " + ALT + h", hl.dsp.window.resize({ x = -40, y = 0,   relative = true }))
 hl.bind(mainMod .. " + ALT + j", hl.dsp.window.resize({ x = 0,   y = 40,  relative = true }))
 hl.bind(mainMod .. " + ALT + k", hl.dsp.window.resize({ x = 0,   y = -40, relative = true }))
 
--- Screenshot (percorso personalizzato, adatta alla tua home)
+-- Screenshot: path reale gestito da home-manager (myPaths.screenshots),
+-- niente piu' "~/Media/Pictures/screenshots" mockato e fuori posto.
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(
-    [[grim -g "$(slurp -w 0)" ~/Media/Pictures/screenshots/$(date +'%s')_grim.png]]
+    'grim -g "$(slurp -w 0)" ' .. screenshotsDir .. '/$(date +\'%s\')_grim.png'
 ))
 
--- Script personalizzati dell'autore originale (probabilmente da rimuovere/adattare)
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/scripts/animation.sh"))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/scripts/waybar.sh"))
+-- Animazioni: tasto SUPER + A, chiama lo script reale gestito da
+-- home-manager (myPaths.scripts), niente piu' "~/scripts" mockato.
+hl.bind(mainMod .. " + A", function()
+    local enabled = hl.get_config("animations.enabled")
+    hl.config({ animations = { enabled = not enabled } })
+end)
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(scriptsDir .. "/waybar.sh"))
 
--- Cambio workspace con rotellina del mouse
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
--- Sposta/ridimensiona finestre con mainMod + click sinistro/destro
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Tasti multimedia (volume, luminosita')
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),               { locked = true, repeating = true })
 hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),          { locked = true, repeating = true })
 hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),              { locked = true, repeating = true })
@@ -256,7 +237,6 @@ hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"),                                   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set +5%"),                                   { locked = true, repeating = true })
 
--- Controllo player multimediale
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })

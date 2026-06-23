@@ -2,8 +2,7 @@
 
   imports = [
     ./fastfetch
-    ./vim
-    ./bat.nix
+    ./vim.nix
     ./bat.nix
     ./eza.nix
     ./git.nix

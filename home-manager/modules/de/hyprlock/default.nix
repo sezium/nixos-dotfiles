@@ -2,6 +2,10 @@
 # also hyprlock documentation is head of hyprlock nix packages version, so i can't manage animation...
 # https://mynixos.com/home-manager/options/programs.hyprlock
 # TODO use stylix with this color...
+{ config, ... }:
+let
+  paths = config.myPaths;
+in
 {
   programs.hyprlock = {
     enable = true;
@@ -16,7 +20,7 @@
 # BACKGROUND
       background {
         monitor =
-          path = ~/media/images/flower.png
+          path = ${paths.images}/flower.png
           blur_passes = 3
           contrast = 0.8916
           brightness = 0.8172
@@ -40,7 +44,7 @@ animations {
 # Profie-Photo
     image {
       monitor =
-          path = ~/media/images/icon.png
+          path = ${paths.images}/icon.png
         border_size = 2
         border_color = rgba(255, 255, 255, 0)
         size = 130
@@ -78,7 +82,7 @@ animations {
 # USER-BOX
     shape {
       monitor =
-        size = 300, 60
+        size = 200, 60
         color = rgba(255, 255, 255, .1)
         rounding = -1
         border_size = 0
@@ -94,7 +98,7 @@ animations {
 # USER
     label {
       monitor =
-        text =     $USER
+        text =     $USER
         color = rgba(216, 222, 233, 0.80)
         outline_thickness = 2
         dots_size = 0.2 # Scale of input-field height, 0.2 - 0.8
@@ -118,7 +122,6 @@ animations {
         inner_color = rgba(255, 255, 255, 0.1)
         font_color = rgb(200, 200, 200)
         fade_on_empty = false
-        placeholder_text = <i><span foreground="##ffffff99">🔒 Enter Pass</span></i>
         hide_input = false
         position = 0, -210
         halign = center
@@ -128,7 +131,7 @@ animations {
 # CURRENT SONG
     label {
       monitor =
-        text = cmd[update:1000] echo "$(~/scripts/songdetail.sh)" 
+        text = cmd[update:1000] echo "$(${paths.scripts}/songdetail.sh)" 
         color = rgba(255, 255, 255, 0.6)
         font_size = 18
         position = 0, 50

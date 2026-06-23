@@ -8,6 +8,7 @@
         email = "ssezium.work@gmail.com";
       };
     };
+
   };
 
   programs.gh.enable = true;

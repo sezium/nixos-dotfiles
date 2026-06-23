@@ -3,12 +3,7 @@
   stylix = {
     enable = true;
     polarity = "either";
-    # for theme, please see https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
-base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-# base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-
-    # @TODO fix tmux
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
     image = ../wallpapers/flower.png;
 
@@ -37,25 +32,18 @@ base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 # run this: fc-cache -r.
     fonts = {
       monospace = {
-        # package = pkgs.cascadia-code;
         package = pkgs.nerd-fonts.caskaydia-cove;
         name = "CaskaydiaCove Nerd Font";
-        # package = pkgs.nerd-fonts.jetbrains-mono;
-        # name = "JetBrainsMono Nerd Font";
       };
 
       sansSerif = {
         package = pkgs.nerd-fonts.caskaydia-cove;
         name = "CaskaydiaCove Nerd Font";
-        # package = pkgs.nerd-fonts.jetbrains-mono;
-        # name = "JetBrainsMono Nerd Font";
       };
 
       serif = {
         package = pkgs.nerd-fonts.caskaydia-cove;
         name = "CaskaydiaCove Nerd Font";
-        # package = pkgs.dejavu_fonts;
-        # name = "DejaVu Serif";
       };
     };
 
@@ -78,7 +66,6 @@ base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
       neovim.enable = true;
       qt.enable = true;
       tmux.enable = true;
-      nixcord.enable = true; # discord
       spotify-player.enable = true;
       vim.enable = true;
       # waybar.enable = true;

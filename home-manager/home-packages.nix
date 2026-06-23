@@ -12,6 +12,10 @@
     killall
     perf
 
+    # Screenshot
+    grim 
+    slurp
+
     # Search / navigation / CLI tools
     fd
     fzf
