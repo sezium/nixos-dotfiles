@@ -44,7 +44,7 @@ animations {
 # Profie-Photo
     image {
       monitor =
-          path = ${paths.images}/icon.png
+          path = ${paths.images}/icon_256x256.png
         border_size = 2
         border_color = rgba(255, 255, 255, 0)
         size = 130

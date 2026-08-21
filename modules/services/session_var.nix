@@ -12,5 +12,6 @@
     EDITOR = "nvim";
     BROWSER = "brave"; # TODO check if this is correct or else add browser to the session var in home-manager
     SHELL = "zsh";
+    CHROME_EXECUTABLE = "$(which brave)";
   };
 }

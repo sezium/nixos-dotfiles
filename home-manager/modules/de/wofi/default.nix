@@ -5,7 +5,7 @@
     settings = {
       allow_markup = true;
       allow_images = true;
-
+      location = "bottom"; 
       width = 480;
       prompt = "Search";
 
@@ -74,8 +74,6 @@ entry:selected {
 #text {
     color: inherit;
 }
-
-
 
 ";
 

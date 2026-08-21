@@ -8,6 +8,7 @@
     tree
     unzip
     zip
+    unrar
     wget
     killall
     perf
@@ -27,10 +28,17 @@
     gh
     lazygit
     gcc
+    ninja
     cmake
     gnumake
     bear
     neovim
+
+    cargo
+    rustc
+    rusty-man
+
+    appimage-run
 
     # Terminal / shell customization
     kitty
@@ -86,6 +94,10 @@
     # Desktop / workflow apps
     github-desktop
     wofi-power-menu
+
+    # Wine
+    wine64
+    winetricks
 
   ];
 
