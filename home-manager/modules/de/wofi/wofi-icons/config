@@ -1,0 +1,30 @@
+width=200
+height=200
+
+lines=4
+columns=4
+
+location=bottom
+yoffset=-10 # update this when touching hyprland yoffset
+xoffset=  0 # update this when touching hyprland xoffset
+
+prompt=Search
+show=drun
+prompt=Apps
+
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_halign=fill
+insensitive=true
+allow_images=true
+image_size=35
+gtk_dark=true
+term=kitty  # update this when touching default terminal
+hide_scroll=true
+matching=fuzzy
+
+# I can also use lines to specify how many entry I want instead of using height
+# It should be used after height to work.

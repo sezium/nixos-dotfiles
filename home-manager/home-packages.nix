@@ -84,6 +84,7 @@
     # Wayland / Hyprland utilities
     hyprpaper
     waybar
+    wofi
     wl-clipboard
     wf-recorder
     brightnessctl
