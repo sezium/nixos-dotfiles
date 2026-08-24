@@ -93,7 +93,6 @@
     localsend
 
     # Desktop / workflow apps
-    github-desktop
     wofi-power-menu
 
     # Wine
