@@ -3,144 +3,116 @@
 # https://mynixos.com/home-manager/options/programs.hyprlock
 # TODO use stylix with this color...
 { config, ... }:
+
 let
   paths = config.myPaths;
+  colors = config.lib.stylix.colors;
 in
 {
   programs.hyprlock = {
     enable = true;
+
     importantPrefixes = [
-        # "$"
-        # "bezier"
-        # "monitor"
-        # "size"
-        # "input-field"
+      # "$"
+      # "bezier"
+      # "monitor"
+      # "size"
+      # "input-field"
     ];
+
     extraConfig = ''
-# BACKGROUND
+      # BACKGROUND
       background {
         monitor =
-          path = ${paths.images}/flower.png
-          blur_passes = 3
-          contrast = 0.8916
-          brightness = 0.8172
-          vibrancy = 0.1696
-          vibrancy_darkness = 0.0
+        path = ${paths.images}/flower.png
+        blur_passes = 3
+        contrast = 0.8916
+        brightness = 0.8172
+        vibrancy = 0.1696
+        vibrancy_darkness = 0.0
       }
 
-# GENERAL
-    general {
-      grace = 0
-    }
-# ANIMATION
-animations {
-    enabled = true
-    bezier = linear, 1, 1, 0, 0
-    animation = fadeIn, 1, 5, linear
-    animation = fadeOut, 1, 5, linear
-    animation = inputFieldDots, 1, 2, linear
-}
+      # GENERAL
+      general {
+        grace = 0
+      }
 
-# Profie-Photo
-    image {
-      monitor =
-          path = ${paths.images}/icon_256x256.png
-        border_size = 2
-        border_color = rgba(255, 255, 255, 0)
-        size = 130
+      # ANIMATION
+      animations {
+        enabled = true
+        bezier = linear, 1, 1, 0, 0
+        animation = fadeIn, 1, 5, linear
+        animation = fadeOut, 1, 5, linear
+        animation = inputFieldDots, 1, 2, linear
+      }
+
+      # PROFILE PHOTO
+      image {
+        monitor =
+        path = ${paths.images}/icon_256x256.png
+        border_size = 0
+        size = 200
         rounding = -1
         rotate = 0
         reload_time = -1
-        reload_cmd = 
+        reload_cmd =
         position = 0, 40
         halign = center
         valign = center
-    }
+      }
 
-# Day-Month-Date
-    label {
-      monitor =
+      # DAY-MONTH-DATE
+      label {
+        monitor =
         text = cmd[update:1000] echo -e "$(date +"%A, %B %d")"
-        color = rgba(216, 222, 233, 0.70)
+        color = rgba(${colors.base05-rgb-r}, ${colors.base05-rgb-g}, ${colors.base05-rgb-b}, 0.70)
         font_size = 25
         position = 0, 350
         halign = center
         valign = center
-    }
+      }
 
-# Time
+    # TIME
     label {
       monitor =
-        text = cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"
-        color = rgba(216, 222, 233, 0.70)
-        font_size = 100
-        position = 0, 250
-        halign = center
-        valign = center
+      text = cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"
+      color = rgba(${colors.base07-rgb-r}, ${colors.base07-rgb-g}, ${colors.base07-rgb-b}, 0.70)
+      font_size = 100
+      position = 0, 250
+      halign = center
+      valign = center
     }
 
-# USER-BOX
-    shape {
-      monitor =
-        size = 200, 60
-        color = rgba(255, 255, 255, .1)
-        rounding = -1
-        border_size = 0
-        border_color = rgba(253, 198, 135, 0)
-        rotate = 0
-        xray = false # if true, make a "hole" in the background (rectangle of specified size, no rotation)
-
-        position = 0, -130
-        halign = center
-        valign = center
-    }
-
-# USER
-    label {
-      monitor =
-        text =     $USER
-        color = rgba(216, 222, 233, 0.80)
-        outline_thickness = 2
-        dots_size = 0.2 # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.2 # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true
-        font_size = 18
-        position = 0, -130
-        halign = center
-        valign = center
-    }
-
-# INPUT FIELD
+    # INPUT FIELD
     input-field {
       monitor =
-        size = 300, 60
-        outline_thickness = 2
-        dots_size = 0.2 # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.2 # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true
-        outer_color = rgba(0, 0, 0, 0)
-        inner_color = rgba(255, 255, 255, 0.1)
-        font_color = rgb(200, 200, 200)
-        fade_on_empty = false
-        hide_input = false
-        position = 0, -210
-        halign = center
-        valign = center
-    }
+      size = 300, 60
+      outline_thickness = 2
+      dots_size = 0.2
+      dots_spacing = 0.2
+      dots_center = true
 
-# CURRENT SONG
-    label {
-      monitor =
-        text = cmd[update:1000] echo "$(${paths.scripts}/songdetail.sh)" 
-        color = rgba(255, 255, 255, 0.6)
+      outer_color = rgba(${colors.base04-rgb-r}, ${colors.base04-rgb-g}, ${colors.base04-rgb-b}, 0.0)
+      inner_color = rgba(${colors.base01-rgb-r}, ${colors.base01-rgb-g}, ${colors.base01-rgb-b}, 0.85)
+      font_color = rgb(${colors.base05-rgb-r}, ${colors.base05-rgb-g}, ${colors.base05-rgb-b})
+
+      fade_on_empty = false
+      hide_input = false
+
+      position = 0, -210
+      halign = center
+      valign = center
+    }
+      # CURRENT SONG
+      label {
+        monitor =
+        text = cmd[update:1000] echo "$(${paths.scripts}/songdetail.sh)"
+        color = rgba(${colors.base05-rgb-r}, ${colors.base05-rgb-g}, ${colors.base05-rgb-b}, 0.60)
         font_size = 18
         position = 0, 50
         halign = center
         valign = bottom
-    }
-
-
+      }
     '';
   };
-
 }

@@ -5,7 +5,7 @@
     settings = {
       user = {
         name = "sezium";
-        email = "ssezium.work@gmail.com";
+        email = "ssezium@proton.me";
       };
     };
 
