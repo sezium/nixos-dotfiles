@@ -92,9 +92,6 @@
     # File sharing / network
     localsend
 
-    # Desktop / workflow apps
-    wofi-power-menu
-
     # Wine
     wine64
     winetricks

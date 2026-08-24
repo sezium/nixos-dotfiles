@@ -32,7 +32,6 @@ local mainMod     = "SUPER"
 local terminal    = "kitty"
 local fileManager = terminal .. " zsh -c yazi"
 local menu        = "wofi --show drun"
-local powerMenu   = "wofi-power-menu"
 local lockScreen  = "hyprlock"
 local browser     = "brave"
 
@@ -186,7 +185,6 @@ end)
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + space", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + U", hl.dsp.exec_cmd(powerMenu))
 hl.bind(mainMod .. " + 0", hl.dsp.exec_cmd(lockScreen))
 
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "l" }))

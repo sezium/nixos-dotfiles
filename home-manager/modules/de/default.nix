@@ -5,8 +5,6 @@
     ./hyprlock
     ./waybar
     ./wofi
-    ./wofi-power-menu
-
   ];
 
 }
