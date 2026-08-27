@@ -69,7 +69,7 @@
       spotify-player.enable = true;
       btop.enable = true;
       vim.enable = true;
-      # waybar.enable = true;
+      waybar.enable = true;
       # wofi.enable = true;
       zathura.enable = true;
     };

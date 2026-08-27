@@ -30,7 +30,7 @@ hl.layer_rule({ match = { namespace = "selection" }, no_anim = true })
 ---------------
 local mainMod     = "SUPER"
 local terminal    = "kitty"
-local fileManager = terminal .. " zsh -c yazi"
+local fileManager = terminal .. " $SHELL -c yazi"
 local menu        = "wofi --show drun"
 local lockScreen  = "hyprlock"
 local browser     = "brave"
@@ -51,6 +51,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(browser, { workspace = "1 silent" })
     hl.exec_cmd(terminal, { workspace = "2 silent" })
 end)
+
+-------------------
+---- KEYSWITCH ----
+-------------------
 
 -----------------
 ---- GENERAL ----
@@ -107,7 +111,7 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 5,  bezier = "myBez
 ---------------
 hl.config({
     input = {
-        kb_layout = "us",
+        kb_layout = "us, it",
         repeat_delay = 200,
         repeat_rate = 30,
         accel_profile = "flat",
@@ -119,6 +123,7 @@ hl.config({
             scroll_factor = 0.2,
         },
     },
+
 })
 
 hl.device({ name = "razer-razer-deathadder-essential",   sensitivity = -0.65 })
@@ -207,6 +212,8 @@ hl.bind(mainMod .. " + ALT + l", hl.dsp.window.resize({ x = 40,  y = 0,   relati
 hl.bind(mainMod .. " + ALT + h", hl.dsp.window.resize({ x = -40, y = 0,   relative = true }))
 hl.bind(mainMod .. " + ALT + j", hl.dsp.window.resize({ x = 0,   y = 40,  relative = true }))
 hl.bind(mainMod .. " + ALT + k", hl.dsp.window.resize({ x = 0,   y = -40, relative = true }))
+
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
 
 -- Screenshot: path reale gestito da home-manager (myPaths.screenshots),
 -- niente piu' "~/Media/Pictures/screenshots" mockato e fuori posto.
