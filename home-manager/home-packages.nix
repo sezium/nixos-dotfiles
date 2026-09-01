@@ -12,6 +12,7 @@
     wget
     killall
     perf
+    jq 
 
     # Screenshot
     grim 

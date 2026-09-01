@@ -4,7 +4,7 @@
   "reload_style_on_change": true,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["group/expand","bluetooth","network", "battery", "custom/power"],
+  "modules-right": ["group/expand", "custom/keyboard", "bluetooth", "network", "battery", "custom/power"],
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -22,6 +22,12 @@
     "format": "⏻",
     "on-click": "poweroff",
     "escape": true
+  },
+  "custom/keyboard": {
+  "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | awk '{if ($0 == \"Italian\") print \"IT\"; else if ($0 == \"English (US)\") print \"US\"; else print $0}'",
+    "interval": 1,
+    "format": " {}", 
+    "tooltip": false
   },
   "clock": {
     "format": "{:%I:%M:%S %p} ",

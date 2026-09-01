@@ -1,3 +1,4 @@
+/*󰌌 */
 window#waybar {
   all:unset;
 }
@@ -116,7 +117,7 @@ tooltip {
   transition: all .3s ease; 
 }
 #custom-expand:hover{
-  color: black;
+  color: white;
 }
 
 #cpu,#memory,#temperature{
