@@ -13,6 +13,7 @@
     killall
     perf
     jq 
+    entr # used to run a command after a file changes
 
     # Screenshot
     grim 
@@ -27,7 +28,6 @@
     # Development tools
     git
     gh
-    lazygit
     gcc
     ninja
     cmake
@@ -50,10 +50,6 @@
     pavucontrol
     playerctl
 
-    # Communication / social
-    discord
-    telegram-desktop
-
     # Image / drawing / notes
     aseprite
     xournalpp
@@ -72,7 +68,6 @@
 
     # Documents / office
     libreoffice
-    gnome-calculator
     zathura
 
     # Gaming

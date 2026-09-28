@@ -61,12 +61,19 @@ end)
 -----------------
 hl.config({
     general = {
-        gaps_in = 5,
-        gaps_out = 10,
-        border_size = 0,
+        gaps_in = 4,
+        gaps_out = 12,
+        border_size = 1,
         resize_on_border = true,
         allow_tearing = false,
         layout = "dwindle",
+
+        col = {
+          active_border = "rgb(FFFFFF)",
+          -- active_border = "rgb(005D8D)", -- BLUE LIKE BACKGROUND
+          inactive_border = "rgb(000000)",
+
+        }
     },
 })
 
@@ -75,7 +82,7 @@ hl.config({
 -------------------
 hl.config({
     decoration = {
-        rounding = 5,
+        rounding = 0,
         shadow = {
             enabled = false,
         },

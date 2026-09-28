@@ -1,32 +1,28 @@
 /*󰌌 */
 window#waybar {
-  all:unset;
+  all: unset;
 }
 
-.modules-left {
-  padding:7px;
-  margin:5px;
-  border-radius:10px;
-  background: rgba(0, 0, 0, 0); 
-}
+/* margin-top can also be gaps out */
+
 .modules-center {
-  padding:7px;
-  margin:5px;
-  border-radius:10px;
-  background: rgba(0, 0, 0, 0); 
-
+  padding: 0px;
+  margin-top: 12px; /* change this to change the top offset of the bar to the screen  */
 }
+.modules-left {
+  padding-left: 12px; /* gaps out */
+  margin-top: 12px; /* change this to change the top offset of the bar to the screen */
+}
+
 .modules-right {
-  padding:7px;
-  margin:5px;
-  border-radius:10px;
-  background: rgba(0, 0, 0, 0); 
+  padding-right: 12px; /* gaps out */
+  margin-top: 12px; /* change this to change the top offset of the bar to the screen */
 }
 tooltip {
   background: rgba(0, 0, 0, 0); 
   color: white;
 }
-#clock{
+#clock {
   padding: 0px 5px;
   color: rgba(255, 255, 255, 1); /* Bianco puro */
   transition: all .3s ease;
@@ -34,42 +30,27 @@ tooltip {
 #workspaces {
   padding: 0px 5px;
 }
+
 #workspaces button {
-  all: unset;
-  padding: 0px 5px;
-  color: rgba(200, 200, 200, 1); /* Bianco più scuro */
-  transition: all 0.2s ease;
+  padding: 0 5px 0 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: rgba(200, 200, 200, 1);
 }
 
 #workspaces button:hover {
-  color: rgba(220, 220, 220, 1); /* Un po' più chiaro al passaggio */
-  border: none;
-  text-shadow: 0px 0px 1.5px rgba(255, 255, 255, 0.5);
-  transition: all 1s ease;
+  color: rgba(220, 220, 220, 1);
 }
 
 #workspaces button.active {
-  color: rgba(255, 255, 255, 1); /* Bianco puro */
-  border: none;
+  color: white;
 }
 
 #workspaces button.empty {
-  color: rgba(180, 180, 180, 1); /* Ancora più scuro */
-  border: none;
-  text-shadow: 0px 0px 1.5px rgba(255, 255, 255, 0.2);
+  color: rgba(180, 180, 180, 1);
 }
 
-#workspaces button.empty:hover {
-  color: rgba(200, 200, 200, 1);
-  border: none;
-  text-shadow: 0px 0px 1.5px rgba(255, 255, 255, 0.5);
-  transition: all 1s ease;
-}
-
-#workspaces button.empty.active {
-  color: rgba(255, 255, 255, 1); /* Bianco puro */
-  border: none;
-}
 #bluetooth {
   padding: 0px 5px;
   transition: all .3s ease;
@@ -106,17 +87,17 @@ tooltip {
   animation-direction: alternate;
 }
 #group-expand{
-  padding: 0px 5px;
+  padding: 0px 0px;
   transition: all .3s ease; 
 
   color:rgba(255,255,255,1);
 }
 #custom-expand{
-  padding: 0px 5px;
+  padding: 0px 0px;
   color:rgba(255,255,255,1);
   transition: all .3s ease; 
 }
-#custom-expand:hover{
+#custom-expand:hover {
   color: white;
 }
 
@@ -131,17 +112,17 @@ tooltip {
 
 }
 #tray{
-  padding: 0px 5px;
+  padding: 0px 0px;
   transition: all .3s ease; 
 
 }
 #tray menu * {
-  padding: 0px 5px;
+  padding: 0px 0px;
   transition: all .3s ease; 
 }
 
 #tray menu separator {
-  padding: 0px 5px;
+  padding: 0px 0px;
   transition: all .3s ease; 
 }
 
