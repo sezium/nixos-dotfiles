@@ -8,13 +8,17 @@ in
   # leggere questi valori da `config.myPaths.*` invece di scrivere stringhe
   # mockate a mano (es. "~/Media/Pictures/screenshots" o "~/scripts").
   options.myPaths = {
+    config = lib.mkOption {
+      type = lib.types.str;
+      default = "${home}/.config";
+    };
     docs = lib.mkOption {
       type = lib.types.str;
       default = "${home}/docs";
     };
     downloads = lib.mkOption {
       type = lib.types.str;
-      default = "${home}/Downloads";
+      default = "${home}/downloads";
     };
 
     media = lib.mkOption {
@@ -38,17 +42,13 @@ in
       default = "${config.myPaths.media}/images";
     };
 
-    hacks = lib.mkOption {
-      type = lib.types.str;
-      default = "${home}/hacks";
-    };
     github = lib.mkOption {
       type = lib.types.str;
       default = "${home}/github";
     };
     scripts = lib.mkOption {
       type = lib.types.str;
-      default = "${home}/scripts";
+      default = "${config.myPaths.config}/scripts";
     };
   };
 
@@ -67,7 +67,6 @@ in
         PATH_SCREENSHOTS = paths.screenshots;
         PATH_IMAGES = paths.images;
 
-        PATH_HACKS = paths.hacks;
         PATH_GITHUB = paths.github;
         PATH_SCRIPTS = paths.scripts;
       };
@@ -82,8 +81,8 @@ in
         "${paths.screenshots}/.keep".text = "";
         "${paths.images}/.keep".text = "";
 
-        "${paths.hacks}/.keep".text = "";
         "${paths.github}/.keep".text = "";
+        "${paths.config}/.keep".text = "";
 
         "${paths.scripts}" = {
           source = ../scripts;
@@ -108,10 +107,12 @@ in
         music = paths.music;
         pictures = paths.images;
 
+        # cat ~/.config/user-dirs.dirs too see paths.
         # Non gestiamo Desktop / Public / Templates: li puntiamo alla home
         # stessa così Home Manager non li materializza come cartelle
         # separate (createDirectories=true le creerebbe comunque se
         # lasciate al default XDG).
+        projects = home;
         desktop = home;
         publicShare = home;
         templates = home;
