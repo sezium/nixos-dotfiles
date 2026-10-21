@@ -3,6 +3,7 @@
     ./audio.nix
     ./bash.nix
     ./bluetooth.nix
+    ./common_packages.nix
     ./gvfs.nix
     ./home-manager.nix
     ./ld.nix
