@@ -101,17 +101,41 @@ hl.config({
     },
 })
 
-hl.curve("myBezier",   { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.00} } })
-hl.curve("myBezier2",  { type = "bezier", points = { {0, 0.55},   {0.45, 1}   } })
-hl.curve("dragEffect", { type = "bezier", points = { {0, 1},      {0.4, 1}    } })
 
-hl.animation({ leaf = "windowsMove", enabled = true, speed = 20, bezier = "dragEffect" })
-hl.animation({ leaf = "windows",     enabled = true, speed = 10, bezier = "myBezier" })
-hl.animation({ leaf = "windowsOut",  enabled = true, speed = 4,  bezier = "default", style = "popin 80%" })
-hl.animation({ leaf = "windowsIn",   enabled = true, speed = 4,  bezier = "dragEffect", style = "popin 20%" })
-hl.animation({ leaf = "fade",        enabled = true, speed = 3,  bezier = "myBezier2" })
-hl.animation({ leaf = "layersIn",    enabled = true, speed = 5,  bezier = "myBezier2", style = "fade" })
-hl.animation({ leaf = "workspaces",  enabled = true, speed = 5,  bezier = "myBezier2" })
+
+-- prod utilizes the stored hyde.config.anim.duration_scale to dynamically change anim speed!
+local prod = function(ds)
+    return ds
+end
+
+hl.curve("default", {type = "bezier", points = {{0.12, 0.92}, {0.08, 1.0}}})
+hl.curve("wind", {type = "bezier", points = {{0.12, 0.92}, {0.08, 1.0}}})
+hl.curve("overshot", {type = "bezier", points = {{0.18, 0.95}, {0.22, 1.03}}})
+hl.curve("liner", {type = "bezier", points = {{1, 1}, {1, 1}}})
+
+hl.animation({leaf = "layersIn", enabled = true, speed = prod(4), bezier = "default", style = "popin"})
+hl.animation({leaf = "layersOut", enabled = true, speed = prod(4), bezier = "default", style = "popin"})
+hl.animation({leaf = "fadeLayersIn", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeLayersOut", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "workspacesIn", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "workspacesOut", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "specialWorkspace", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "windows", enabled = true, speed = prod(7), bezier = "wind", style = "popin"})
+hl.animation({leaf = "windowsIn", enabled = true, speed = prod(7), bezier = "overshot", style = "popin"})
+hl.animation({leaf = "windowsOut", enabled = true, speed = prod(5), bezier = "overshot", style = "popin"})
+hl.animation({leaf = "windowsMove", enabled = true, speed = prod(6), bezier = "overshot", style = "slide"})
+hl.animation({leaf = "layers", enabled = true, speed = prod(4), bezier = "default", style = "popin"})
+hl.animation({leaf = "fadeIn", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeOut", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeSwitch", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeShadow", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeDim", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "fadeLayers", enabled = true, speed = prod(7), bezier = "default"})
+hl.animation({leaf = "workspaces", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "border", enabled = true, speed = prod(1), bezier = "liner"})
+hl.animation({leaf = "borderangle", enabled = true, speed = prod(24), bezier = "liner", style = "loop"})
+hl.animation({leaf = "specialWorkspaceIn", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "specialWorkspaceOut", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
 
 ---------------
 ---- INPUT ----
