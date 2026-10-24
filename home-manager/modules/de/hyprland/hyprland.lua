@@ -63,7 +63,7 @@ hl.config({
     general = {
         gaps_in = 4,
         gaps_out = 12,
-        border_size = 1,
+        border_size = 2,
         resize_on_border = true,
         allow_tearing = false,
         layout = "dwindle",
@@ -71,7 +71,7 @@ hl.config({
         col = {
           active_border = "rgb(FFFFFF)",
           -- active_border = "rgb(005D8D)", -- BLUE LIKE BACKGROUND
-          inactive_border = "rgb(000000)",
+          inactive_border = "rgba(00000000)",
 
         }
     },
