@@ -50,7 +50,7 @@ To get started with this setup, follow these steps:
 
     ```diff
     ...
-      outputs = { self, nixpkgs, home-manager, nixvim, stylix, ... }@inputs: let
+      outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: let
         system = "x86_64-linux";
     --  homeStateVersion = "25.05";
     ++  homeStateVersion = "<your_home_manager_state_version>";

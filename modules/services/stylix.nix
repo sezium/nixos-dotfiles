@@ -4,6 +4,7 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
+    # see also Terminus font for a retro style
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.caskaydia-cove;

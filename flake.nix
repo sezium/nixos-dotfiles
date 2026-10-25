@@ -10,11 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +17,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nixvim, stylix, ... }@inputs: 
+  outputs = { nixpkgs, home-manager, stylix, ... }@inputs: 
   let
     system = "x86_64-linux";
     homeStateVersion = "26.05";
@@ -63,7 +58,6 @@
 
       modules = [
         ./home-manager/home.nix
-        nixvim.homeModules.nixvim
         stylix.homeModules.stylix
       ];
     };

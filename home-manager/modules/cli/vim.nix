@@ -16,10 +16,12 @@ in {
     clang-tools
   ];
 
+  # on first execution, run :CocInstall coc-clangd
   programs.vim = {
     enable = true;
     plugins = vimPlugins;
     extraConfig = ''
+      let g:airline_powerline_fonts = 1
       set bg=dark
       syntax on
       set number
@@ -42,13 +44,12 @@ in {
       nnoremap <S-Tab> :tabnext<CR>
       inoremap {<CR> {<CR>}<Esc>O
 
-      augroup CppRun
-        autocmd!
-        autocmd FileType cpp nnoremap <buffer> <F7> :w<CR>:!clear && ./run.sh<CR>
-        autocmd FileType cpp nnoremap <buffer> <F8> :w<CR>:!clear && ./run.sh < input.txt<CR>
-        autocmd FileType cpp nnoremap <buffer> <F9> :w<CR>:!clear && ./run.sh > output.txt<CR>
-        autocmd FileType cpp nnoremap <buffer> <F10> :w<CR>:!clear && ./run.sh < input.txt > output.txt<CR>
-      augroup END
+      autocmd FileType cpp noremap <F6>  :w <bar> !clear && g++ -D OII -std=c++17 -fsanitize=address -g -Og -Wall -Wextra %:t -o %:r && ./%:r < input.txt<CR>
+      autocmd FileType cpp noremap <F7>  :w <bar> !clear && g++ -D OII -std=c++17 -fsanitize=address -g -Og -Wall -Wextra %:t -o %:r && ./%:r <CR>
+
+      autocmd FileType cpp noremap <F8>  :w <bar> !clear && g++ -D OII -std=c++17 -O2 %:t -o %:r && ./%:r < input.txt<CR>
+      autocmd FileType cpp noremap <F9>  :w <bar> !clear && g++ -D OII -std=c++17 -O2 %:t -o %:r && ./%:r<CR>
+      autocmd FileType cpp noremap <F10> :w <bar> !clear && g++ -D OII -std=c++17 -O2 %:t -o %:r && ./%:r < input.txt > output.txt & ; tail -f output.txt<CR>
 
       let &t_SI = "\e[6 q"
       let &t_EI = "\e[2 q"
