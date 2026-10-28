@@ -14,6 +14,7 @@
     perf
     jq 
     entr # used to run a command after a file changes
+    lazygit
 
     # Screenshot
     grim 

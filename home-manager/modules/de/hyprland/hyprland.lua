@@ -117,9 +117,9 @@ hl.animation({leaf = "layersIn", enabled = true, speed = prod(4), bezier = "defa
 hl.animation({leaf = "layersOut", enabled = true, speed = prod(4), bezier = "default", style = "popin"})
 hl.animation({leaf = "fadeLayersIn", enabled = true, speed = prod(7), bezier = "default"})
 hl.animation({leaf = "fadeLayersOut", enabled = true, speed = prod(7), bezier = "default"})
-hl.animation({leaf = "workspacesIn", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
-hl.animation({leaf = "workspacesOut", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
-hl.animation({leaf = "specialWorkspace", enabled = true, speed = prod(5), bezier = "overshot", style = "slidevert"})
+hl.animation({leaf = "workspacesIn", enabled = true, speed = prod(5), bezier = "overshot"}) -- style = "slidevert"
+hl.animation({leaf = "workspacesOut", enabled = true, speed = prod(5), bezier = "overshot"}) -- style = "slidevert"
+hl.animation({leaf = "specialWorkspace", enabled = true, speed = prod(5), bezier = "overshot"}) -- style = "slidevert"
 hl.animation({leaf = "windows", enabled = true, speed = prod(7), bezier = "wind", style = "popin"})
 hl.animation({leaf = "windowsIn", enabled = true, speed = prod(7), bezier = "overshot", style = "popin"})
 hl.animation({leaf = "windowsOut", enabled = true, speed = prod(5), bezier = "overshot", style = "popin"})
